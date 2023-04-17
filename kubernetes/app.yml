@@ -5,7 +5,7 @@ metadata:
   labels:
     app: vproapp
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: vproapp
@@ -41,16 +41,3 @@ spec:
     app: vproapp
   type: LoadBalancer
 
----
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: hpa-vprofile-autoscaler
-spec:
-  scaleTargetRef:
-    apiVersion: extensions/v1beta1
-    kind: Deployment
-    name: vproapp
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
